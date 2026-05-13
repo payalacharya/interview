@@ -10,3 +10,14 @@ spec:
       port: 80
       targetPort: 80
   type: ClusterIP
+# Apply the service
+kubectl apply -f nginx-service.yaml
+
+# Check service created
+kubectl get service nginx-service-node-port
+
+# Short form
+kubectl get svc nginx-service-node-port
+
+# Check all services
+kubectl get svc
