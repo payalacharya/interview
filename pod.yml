@@ -18,3 +18,6 @@ spec:
     image: nginx:latest
     ports:
     - containerPort: 80
+  - name: busybox-container
+    image: busybox
+    command: ["sleep", "3600"]
