@@ -1,15 +1,18 @@
----
-
-- hosts: all
-  become: yes
-
+---                                    # YAML document start marker
+- hosts: all                           # Run on ALL hosts in inventory
+  become: yes                          # Use sudo/root privileges
   tasks:
-  - name: Install Apache on Ubuntu
-    apt: name=apache2 state=present
-    when: ansible_os_family == "Debian"
-    ignore_errors: True
 
-  - name: Install httpd on Red Hat
-    yum: name=httpd state=present
-    when: ansible_os_family == "RedHat"
-    ignore_errors: True
+  - name: Install Apache on Ubuntu     # Task 1 name (description)
+    apt:                               # Use apt package manager
+      name: apache2                    # Package to install
+      state: present                   # Ensure it is installed
+    when: ansible_os_family == "Debian" # Run ONLY on Debian/Ubuntu
+    ignore_errors: True                # Continue even if task fails
+
+  - name: Install httpd on Red Hat     # Task 2 name (description)
+    yum:                               # Use yum package manager
+      name: httpd                      # Package to install
+      state: present                   # Ensure it is installed
+    when: ansible_os_family == "RedHat" # Run ONLY on RedHat/CentOS
+    ignore_errors: True                # Continue even if task fails
