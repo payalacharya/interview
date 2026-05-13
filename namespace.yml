@@ -4,3 +4,11 @@ metadata:
      name: test-ns
      labels:
         teamname: devops
+# Apply the yaml file
+kubectl apply -f namespace.yaml
+
+# Verify namespace created
+kubectl get namespace test-ns
+
+# Or short form
+kubectl get ns test-ns
