@@ -39,3 +39,26 @@ spec:
     ports:
     -    port: 80
          targetPort: 8080
+# Create namespace if not already created
+kubectl create namespace test-ns
+
+# Apply the manifest
+kubectl apply -f mavenwebapp.yaml
+
+# Check everything in the namespace
+kubectl get all -n test-ns
+
+# Check deployment specifically
+kubectl get deployment mavenwebapp -n test-ns
+
+# Check pods
+kubectl get pods -n test-ns
+
+# Check service
+kubectl get svc mavenwebappsvc -n test-ns
+
+# Watch the deployment rollout
+kubectl rollout status deployment/mavenwebapp -n test-ns
+
+# Check rollout history
+kubectl rollout history deployment/mavenwebapp -n test-ns
