@@ -84,3 +84,28 @@ spec:
     ports:
     -  port: 27017
        targetPort: 27017
+# Check kubectl is connected to your cluster
+kubectl cluster-info
+
+# Create the namespace first (since all resources use test-ns)
+kubectl create namespace test-ns
+
+# Apply the entire file at once
+kubectl apply -f filename.yaml
+
+# Example if your file is named app.yaml
+kubectl apply -f app.yaml
+# Check all resources in the namespace at once
+kubectl get all -n test-ns
+
+# Check Deployment
+kubectl get deployment springapp -n test-ns
+
+# Check ReplicaSet (MongoDB)
+kubectl get replicaset mongodb -n test-ns
+
+# Check Pods
+kubectl get pods -n test-ns
+
+# Check Services
+kubectl get svc -n test-ns
