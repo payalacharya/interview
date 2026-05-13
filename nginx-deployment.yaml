@@ -19,3 +19,14 @@ spec:
         image: nginx:latest        # Docker image used
         ports:
         - containerPort: 80        # Port nginx listens on
+        # Apply the deployment
+kubectl apply -f nginx-deployment.yaml
+
+# Check deployment
+kubectl get deployment nginx-deployment
+
+# Check pods created
+kubectl get pods
+
+# Check pods with labels
+kubectl get pods --show-labels
