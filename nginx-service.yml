@@ -1,15 +1,16 @@
-apiVersion: v1
-kind: Service
+apiVersion: v1                    # API version for core objects
+kind: Service                     # Object type = Service
 metadata:
-  name: nginx-service
+  name: nginx-service-node-port   # Name of the Service
 spec:
   selector:
-    app: nginx
+    app: nginxF                   # Routes traffic to pods with this label
+  type: NodePort                  # Exposes service on each Node's IP
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: ClusterIP
+    - port: 80                    # Service port (internal cluster port)
+      targetPort: 80              # Container port (nginx listens here)
+      nodePort: 30080             # External port on Node (30000-32767)
+      protocol: TCP               # Protocol used
 # Apply the service
 kubectl apply -f nginx-service.yaml
 
