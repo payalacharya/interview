@@ -1,13 +1,17 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: multi-container-demo
+  name: sample-pod-1         # Different name (pods must have unique names)
 spec:
   containers:
-    - name: nginx-container
-      image: nginx
-      ports:
-        - containerPort: 80
-    - name: busybox-container
-      image: busybox
-      command: ["sh", "-c", "while true; do echo Hello from BusyBox; sleep 5; done"]
+  - name: nginx-container    # Container 1 - Main app
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+
+  - name: busybox-container  # Container 2 - Sidecar
+    image: busybox
+    command: ["sleep", "3600"]  # Keeps container alive for 1 hour
+
+    # kubectl apply -f pod.yml
+# kubectl get pods
